@@ -1,0 +1,178 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.phigital.ai.Fragment.JobFragment"
+    tools:ignore="HardcodedText,ContentDescription" >
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/search_bg"
+                android:cursorVisible="false"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Job Search"
+                android:paddingStart="15dp"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imagejob"
+        app:layout_constraintTop_toBottomOf="@id/topbar">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:id="@+id/jobalert"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/jobfront"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/applynow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Apply Now"
+        android:textSize="20sp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20sp"
+        android:textColor="@color/white"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toBottomOf="@id/imagejob"
+        />
+
+    <TextView
+        android:id="@+id/jobtv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:textSize="24sp"
+        android:text="Hirer"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_margin="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/applynow" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/jobView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/layoutcolor"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobtv" />
+
+
+    <TextView
+        android:id="@+id/aaptv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Seeker"
+        android:textColor="?attr/textcolor"
+        android:textSize="24sp"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jobView"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/layoutcolor"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aaptv" />
+
+    <TextView
+        android:id="@+id/articletv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textcolor"
+        android:textSize="30sp"
+        android:text="Library"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/articlervView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/layoutcolor"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/articletv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/articleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/layoutcolor"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/articlervView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

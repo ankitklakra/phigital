@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="HardcodedText" android:layout_height="wrap_content" android:layout_width="wrap_content"
+    android:orientation="horizontal"
+    >
+    
+    <TextView android:id="@+id/Post"
+       android:text="Post"
+        android:textSize="20sp"
+
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:onClick="Post"
+        android:layout_height="50dp"
+        android:layout_width="match_parent" />
+
+    <item android:id="@+id/Shoot"
+        android:icon="@drawable/icon_poll"
+        android:title="Shoot"
+        android:onClick="Shoot"/>
+
+    <item android:id="@+id/Feel"
+        android:icon="@drawable/icon_post"
+        android:title="Post"
+        android:onClick="Feel"/>
+
+    <item android:id="@+id/Article"
+        android:icon="@drawable/icon_job"
+        android:title="Article"
+        android:onClick="Article"/>
+
+</LinearLayout>

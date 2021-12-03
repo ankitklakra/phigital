@@ -1,0 +1,156 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowAnimationStyle">@null</item>
+<!--        <item name="android:windowElevation">@null</item>-->
+<!--       <item name="android:forceDarkAllowed" tools:ignore="NewApi">true</item>-->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/lightgrey</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="layoutcolor">#fff</item>
+        <item name="link">@color/colorPrimary</item>
+        <item name="textcolor">#000</item>
+        <item name="primarycolor">#00aced</item>
+        <item name="backgroundcolor">#FFF</item>
+        <item name="selectedcolor">@color/colorPrimary</item>
+        <item name="defaultcolor">@color/colorPrimary</item>
+        <item name="headercolor">#fff</item>
+        <item name="headertextcolor">#000</item>
+        <item name="message_sender">#fff</item>
+        <item name="message_rec">@color/colorPrimary</item>
+        <item name="like">#fff</item>
+        <item name="search">@color/colorPrimary</item>
+        <item name="following">@color/colorPrimary</item>
+        <item name="android:dropDownListViewStyle">@style/myspinnerstyle</item>
+   </style>
+    <style name="Dark" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="primarycolor">#00aced</item>
+        <item name="android:textColorHint">@color/lightgrey</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="layoutcolor">#fff</item>
+        <item name="link">@color/colorPrimary</item>
+        <item name="textcolor">#000</item>
+
+        <item name="backgroundcolor">#FFF</item>
+        <item name="selectedcolor">@color/colorPrimary</item>
+        <item name="defaultcolor">@color/colorPrimary</item>
+        <item name="headercolor">#fff</item>
+        <item name="headertextcolor">#000</item>
+        <item name="message_sender">#fff</item>
+        <item name="message_rec">@color/colorPrimary</item>
+        <item name="like">#fff</item>
+        <item name="search">@color/colorPrimary</item>
+        <item name="following">@color/colorPrimary</item>
+        <item name="android:dropDownListViewStyle">@style/myspinnerstyle</item>
+
+    </style>
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    </style>
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="myspinnerstyle" parent="android:Widget.ListView.DropDown">
+<!--        <item name="android:divider">@color/colorPrimary</item>-->
+        <item name="android:textColor">@color/colorPrimary</item>
+<!--        <item name="android:fontFamily">@font/roboto_medium</item>-->
+        <item name="android:textSize">16sp</item>
+<!--        <item name="android:dividerHeight">1dp</item>-->
+    </style>
+    <style name="TabAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="textcolor">?attr/lightgrey</item>
+        <item name="colorAccent"> @color/colorPrimary</item>
+        <item name="tabIndicatorColor">@color/colorPrimary</item>
+    </style>
+    <style name="NumberPickerStyle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:colorControlNormal" tools:targetApi="lollipop">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme.FullScreen" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    <style name="DarkTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#212121</item>
+        <item name="primarycolor">#00aced</item>
+        <item name="colorPrimaryDark">#212121</item>
+        <item name="colorAccent">#929292</item>
+        <item name="textcolor">#fff</item>
+
+        <item name="backgroundcolor">#000</item>
+        <item name="layoutcolor">#212121</item>
+        <item name="like">#212121</item>
+        <item name="selectedcolor">#fff</item>
+        <item name="defaultcolor">#9C9C9C</item>
+        <item name="headercolor">#212121</item>
+        <item name="headertextcolor">#fff</item>
+        <item name="message_sender">#fff</item>
+        <item name="message_rec">#fff</item>
+        <item name="search">#000</item>
+        <item name="following">#fff</item>
+
+    </style>
+    <style name="TextOnTabs" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="AppTheme.WhiteAccent">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="colorAccent">#fff</item> <!-- Whatever color you want-->
+    </style>
+    <style name="mytoast">
+    <item name="stTextBold">true</item>
+    <item name="stTextColor">#fff</item>
+    <item name="stTextSize">14sp</item>
+    <item name="stColorBackground">#c7b348f5</item>
+    <item name="stSolidBackground">true</item>
+    <item name="stStrokeWidth">3dp</item>
+    <item name="stStrokeColor">#3cb623c9</item>
+    <item name="stLength">SHORT</item>
+    LONG or SHORT
+    <item name="stGravity">center</item>
+    top or center
+    <item name="stRadius">3dp</item>
+    </style>
+    <style name="TextOnShadow" parent="">
+        <item name="android:shadowColor">@android:color/black</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+    </style>
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/extralightgrey</item>
+    </style>
+</resources>

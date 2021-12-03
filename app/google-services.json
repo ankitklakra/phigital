@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "994736677502",
+    "firebase_url": "https://phigital-in-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "phigital-in",
+    "storage_bucket": "phigital-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994736677502:android:e09934b7d10c5911ee2e2f",
+        "android_client_info": {
+          "package_name": "com.phigital.ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994736677502-e86luuop0vbdvnm1pahjdenqp66sj51n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phigital.ai",
+            "certificate_hash": "ad10e4060e3671805fa778ab7205a25a19e8dc16"
+          }
+        },
+        {
+          "client_id": "994736677502-eo72rsujmlrrafkkv23val2squljunbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhjwan_ser4QBmhv7WneukrwK-lwTGQ8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994736677502-eo72rsujmlrrafkkv23val2squljunbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

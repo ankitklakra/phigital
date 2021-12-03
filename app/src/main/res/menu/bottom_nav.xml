@@ -1,0 +1,32 @@
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/icon_home"
+        android:title=""
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/poll"
+        android:icon="@drawable/icon_poll"
+        android:title=""
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/video"
+        android:icon="@drawable/ic_video_library"
+        android:title=""
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item
+        android:id="@+id/job"
+        android:icon="@drawable/icon_job"
+        android:title=""
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+</menu>

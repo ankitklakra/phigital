@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/messageLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_receiver_btm"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/showreply"
+        app:layout_constraintStart_toEndOf="@+id/civ"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12sp"
+            android:paddingEnd="10dp"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,SpUsage" />
+
+        <com.tylersuehr.socialtextview.SocialTextView
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="45dp"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            android:text=""
+            android:paddingStart="12dp"
+            android:paddingEnd="12sp"
+            android:paddingBottom="12dp"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:hashtagColor="#00ACED"
+            app:mentionColor="#00ACED"
+            app:linkModes="hashtag|mention"/>
+
+        <ImageView
+            android:id="@+id/rec_img"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:background="@drawable/bg_img_receiver_btm"
+            android:contentDescription="@string/contentdescription"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <ImageView
+            android:id="@+id/rec_vid"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_img_receiver_btm"
+            android:contentDescription="@string/contentdescription"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/contentdescription"
+            android:src="@drawable/ic_play"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rec_vid" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/civ"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/box"
+        android:layout_width="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_height="match_parent">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circularImageView2"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_centerInParent="true"
+            app:civ_border_width="1.5dp"
+            android:background="@drawable/bg_profile"
+            app:civ_border_color="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="1.5dp"
+            android:src="@drawable/placeholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/box"
+        android:orientation="horizontal"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toEndOf="@+id/civ">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="12sp"
+            android:src="@drawable/icon_fav"
+            android:visibility="visible"
+            android:contentDescription="@string/contentdescription"
+             />
+
+        <TextView
+            android:id="@+id/liketv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText,SpUsage"
+            android:layout_marginStart="5dp"
+            android:text="Like"
+            android:visibility="gone"
+            android:textColor="@color/maingrey"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="2dp"
+            android:id="@+id/dot"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/dot"
+            android:contentDescription="@string/contentdescription" />
+
+        <TextView
+            android:id="@+id/replyno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText,SpUsage"
+            android:layout_marginStart="5dp"
+            android:text="0"
+            android:visibility="gone"
+            android:textColor="@color/maingrey"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Reply"
+            android:textColor="@color/maingrey"
+            tools:ignore="HardcodedText,SpUsage"
+            android:textSize="12sp"
+            />
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="2dp"
+            android:id="@+id/dot2"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/dot"
+            android:contentDescription="@string/contentdescription" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Time"
+            android:textColor="@color/maingrey"
+            tools:ignore="HardcodedText,SpUsage"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/showreply"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/contentdescription"
+        android:src="@drawable/ic_dropdown_arrow"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorPrimary" />
+
+    <ImageView
+        android:id="@+id/hidereply"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        android:contentDescription="@string/contentdescription"
+        android:src="@drawable/ic_arrow_dropup"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorPrimary" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lin">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/replyview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

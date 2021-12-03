@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:id="@+id/round"
+    android:background="?attr/layoutcolor"
+    android:layout_height="wrap_content"
+    tools:ignore="Overdraw">
+
+    <RelativeLayout
+        android:id="@+id/civ"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circularImageView2"
+            android:layout_width="305dp"
+            android:layout_height="305dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bg_profile"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circularImageView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="3dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mainbtn"
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/civ"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/followtv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_corner2"
+            android:text="Follow"
+            android:padding="6dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,SpUsage" />
+
+        <TextView
+            android:id="@+id/followingtv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/following_button2"
+            android:padding="6dp"
+            android:text="Following"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,SpUsage" />
+    </RelativeLayout>
+
+</RelativeLayout>

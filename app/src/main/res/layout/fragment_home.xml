@@ -1,0 +1,181 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:id="@+id/home"
+    tools:ignore="SmallSp"
+    tools:context="com.phigital.ai.Fragment.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/topbar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+        <RelativeLayout
+            android:id="@+id/add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/contentdescription"
+                android:src="@drawable/ic_add_circle_grey" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/contentdescription"
+                android:src="@drawable/ic_search" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/namebadge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/logofront"
+                android:contentDescription="@string/my_image_description" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/notification"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/notificationimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/contentdescription"
+                android:src="@drawable/icon_notification2" />
+
+            <TextView
+                android:id="@+id/counttv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"
+                android:visibility="gone"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerInParent="true"
+                android:textSize="8sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/chatimage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/contentdescription"
+                android:src="@drawable/ic_offline_bolt" />
+            <TextView
+                android:id="@+id/countmtv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_0"
+                android:visibility="gone"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_centerInParent="true"
+                android:textSize="8sp"/>
+        </RelativeLayout>
+
+        </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pb"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar" />
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/cv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="?attr/layoutcolor"
+            android:focusable="false"
+            android:focusableInTouchMode="false">
+
+            <LinearLayout
+                android:id="@+id/lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/layoutcolor"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/storyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/layoutcolor" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/postView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/layoutcolor" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/pbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:indeterminateOnly="true"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
