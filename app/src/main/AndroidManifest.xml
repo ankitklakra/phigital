@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.phigital.ai">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -58,7 +63,8 @@
             android:windowSoftInputMode="adjustResize">
         </activity>
 
-        <activity android:name="com.phigital.ai.SplashScreen">
+        <activity android:name="com.phigital.ai.SplashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -109,7 +115,8 @@
         <activity android:name="com.phigital.ai.Job.MultipleSearch" />
         <activity android:name="com.phigital.ai.Job.MultipleSearch2" />
         <activity android:name="com.phigital.ai.Job.SingleSearch" />
-        <activity android:name="com.phigital.ai.Job.HireDetails">
+        <activity android:name="com.phigital.ai.Job.HireDetails"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
 
@@ -120,7 +127,8 @@
         </activity>
         <activity android:name="com.phigital.ai.Job.JobSearch" />
         <activity android:name="com.phigital.ai.Job.JobNews" />
-        <activity android:name="com.phigital.ai.Upload.WorkActivity">
+        <activity android:name="com.phigital.ai.Upload.WorkActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
                 <data android:scheme="mailto" />
@@ -128,7 +136,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.phigital.ai.Job.SingleSearch2" />
-        <activity android:name="com.phigital.ai.Job.WorkDetails">
+        <activity android:name="com.phigital.ai.Job.WorkDetails"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
                 <data android:scheme="mailto" />
@@ -215,8 +224,8 @@
         <service
             android:name="com.phigital.ai.Notifications.FirebaseMessaging"
             android:enabled="true"
-            android:exported="true"
-            tools:ignore="ExportedService">
+            android:exported="false"
+            >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

@@ -56,8 +56,8 @@ import com.phigital.ai.Model.ModelUser;
 import com.phigital.ai.R;
 import com.phigital.ai.SharedPref;
 import com.phigital.ai.databinding.ActivityPromoteBinding;
-import com.razorpay.Checkout;
-import com.razorpay.PaymentResultListener;
+//import com.razorpay.Checkout;
+//import com.razorpay.PaymentResultListener;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.model.AspectRatio;
 
@@ -74,7 +74,7 @@ import gun0912.tedimagepicker.builder.TedImagePicker;
 import id.zelory.compressor.Compressor;
 
 @SuppressLint("SetTextI18n")
-public class SponsorshipActivity extends BaseActivity implements View.OnClickListener,PaymentResultListener {
+public class SponsorshipActivity extends BaseActivity implements View.OnClickListener {
     String privacyType;
 
     int a = 1;
@@ -438,7 +438,7 @@ public class SponsorshipActivity extends BaseActivity implements View.OnClickLis
                 }
             });
 
-            Checkout.preload(getApplicationContext());
+//            Checkout.preload(getApplicationContext());
 
             money = Objects.requireNonNull(budget.getText()).toString();
 
@@ -453,7 +453,7 @@ public class SponsorshipActivity extends BaseActivity implements View.OnClickLis
 
                     String totalamount = String.valueOf((totaltax + i)*100) ;
                     if (!totalamount.isEmpty()){
-                        startPayment(totalamount);
+//                        startPayment(totalamount);
                         String size =  Objects.requireNonNull(audience.getText()).toString().trim();
                         audiencenumber = size;
                         Toast.makeText(SponsorshipActivity.this," Transaction is initiating please do not refresh ", Toast.LENGTH_SHORT).show();
@@ -495,61 +495,61 @@ public class SponsorshipActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
-    public void startPayment(String amount) {
-
-        /**
-         * Instantiate Checkout
-         */
-        Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
-
-        /**
-         * Set your logo here
-         */
-//        checkout.setImage(R.drawable.logo);
-
-        /**
-         * Reference to current activity
-         */
-        final Activity activity = this;
-
-        /**
-         * Pass your payment options to the Razorpay Checkout as a JSONObject
-         */
-        try {
-            JSONObject options = new JSONObject();
-
-            options.put("name", "Phigital");
-//            options.put("description", "Reference No. #123456");
-            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
-//            options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
-            options.put("theme.color", "#00ACED");
-            options.put("currency", "INR");
-            options.put("amount", amount);//pass amount in currency subunits
-            options.put("prefill.email", "phigitalai@gmail.com");
-            options.put("prefill.contact","9988776655");
-            JSONObject retryObj = new JSONObject();
-            retryObj.put("enabled", true);
-            retryObj.put("max_count", 4);
-            options.put("retry", retryObj);
-            checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
-            checkout.open(activity, options);
-
-        } catch(Exception e) {
-
-        }
-    }
-
-    @Override
-    public void onPaymentSuccess(String s) {
-        binding.pb.setVisibility(View.VISIBLE);
-        uploadData(compressedImageFile);
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-        Snackbar.make(binding.postlayout,s, Snackbar.LENGTH_LONG).show();
-    }
+//    public void startPayment(String amount) {
+//
+//        /**
+//         * Instantiate Checkout
+//         */
+//        Checkout checkout = new Checkout();
+//        checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
+//
+//        /**
+//         * Set your logo here
+//         */
+////        checkout.setImage(R.drawable.logo);
+//
+//        /**
+//         * Reference to current activity
+//         */
+//        final Activity activity = this;
+//
+//        /**
+//         * Pass your payment options to the Razorpay Checkout as a JSONObject
+//         */
+//        try {
+//            JSONObject options = new JSONObject();
+//
+//            options.put("name", "Phigital");
+////            options.put("description", "Reference No. #123456");
+//            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
+////            options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
+//            options.put("theme.color", "#00ACED");
+//            options.put("currency", "INR");
+//            options.put("amount", amount);//pass amount in currency subunits
+//            options.put("prefill.email", "phigitalai@gmail.com");
+//            options.put("prefill.contact","9988776655");
+//            JSONObject retryObj = new JSONObject();
+//            retryObj.put("enabled", true);
+//            retryObj.put("max_count", 4);
+//            options.put("retry", retryObj);
+//            checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
+//            checkout.open(activity, options);
+//
+//        } catch(Exception e) {
+//
+//        }
+//    }
+//
+//    @Override
+//    public void onPaymentSuccess(String s) {
+//        binding.pb.setVisibility(View.VISIBLE);
+//        uploadData(compressedImageFile);
+//    }
+//
+//    @Override
+//    public void onPaymentError(int i, String s) {
+//        Snackbar.make(binding.postlayout,s, Snackbar.LENGTH_LONG).show();
+//    }
 
 
     private void calculatetax(String taxes) {

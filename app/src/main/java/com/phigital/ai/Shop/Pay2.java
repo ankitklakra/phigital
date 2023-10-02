@@ -34,8 +34,8 @@ import com.phigital.ai.Model.ModelCart;
 import com.phigital.ai.R;
 import com.phigital.ai.SharedPref;
 import com.phigital.ai.databinding.ActivityPayBinding;
-import com.razorpay.Checkout;
-import com.razorpay.PaymentResultListener;
+//import com.razorpay.Checkout;
+//import com.razorpay.PaymentResultListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class Pay2 extends AppCompatActivity implements  PaymentResultListener {
+public class Pay2 extends AppCompatActivity  {
     int num = 1;
     private static final int UPI_PAYMENT = 1;
     ActivityPayBinding binding;
@@ -428,86 +428,86 @@ public class Pay2 extends AppCompatActivity implements  PaymentResultListener {
 //        Snackbar.make(binding.cl,"Uploaded", Snackbar.LENGTH_LONG).show();
     }
 
-    private void startPayment(String amount) {
-        /**
-         * Instantiate Checkout
-         */
-        Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
-
-        /**
-         * Set your logo here
-         */
-//        checkout.setImage(R.drawable.logo);
-
-        /**
-         * Reference to current activity
-         */
-        final Activity activity = this;
-
-        /**
-         * Pass your payment options to the Razorpay Checkout as a JSONObject
-         */
-        try {
-            JSONObject options = new JSONObject();
-
-            options.put("name", "Phigital");
-//            options.put("description", "Reference No. #123456");
-            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
-//            options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
-            options.put("theme.color", "#00ACED");
-            options.put("currency", "INR");
-            options.put("amount", amount);//pass amount in currency subunits
-            options.put("prefill.email", "phigital@gmail.com");
-            options.put("prefill.contact","9988776655");
-            JSONObject retryObj = new JSONObject();
-            retryObj.put("enabled", true);
-            retryObj.put("max_count", 4);
-            options.put("retry", retryObj);
-            checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
-            checkout.open(activity, options);
-
-        } catch(Exception e) {
-
-        }
-    }
-    @Override
-    public void onPaymentSuccess(String s) {
-        Toast.makeText(this,"Please wait", Toast.LENGTH_SHORT).show();
-        copyFirebaseData();
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-        Toast.makeText(this, "Payment UnSuccess", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @SuppressLint("QueryPermissionsNeeded")
-    private void payUsingUpi(String amount, String upiId, String name, String note) {
-
-        Uri uri = Uri.parse("upi://pay").buildUpon()
-                .appendQueryParameter("pa", upiId)
-                .appendQueryParameter("pn", name)
-                .appendQueryParameter("tr", "261433")
-                .appendQueryParameter("tn", note)
-                .appendQueryParameter("am", amount)
-                .appendQueryParameter("cu", "INR")
-                .build();
-
-        Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
-        upiPayIntent.setData(uri);
-
-        // will always show a dialog to user to choose an app
-        Intent chooser = Intent.createChooser(upiPayIntent, "Pay with");
-
-        // check if intent resolves
-        if (null != chooser.resolveActivity(getPackageManager())) {
-            startActivityForResult(chooser, UPI_PAYMENT);
-        } else {
-            Toast.makeText(this, "No UPI app found, please install one to continue", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void startPayment(String amount) {
+//        /**
+//         * Instantiate Checkout
+//         */
+//        Checkout checkout = new Checkout();
+//        checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
+//
+//        /**
+//         * Set your logo here
+//         */
+////        checkout.setImage(R.drawable.logo);
+//
+//        /**
+//         * Reference to current activity
+//         */
+//        final Activity activity = this;
+//
+//        /**
+//         * Pass your payment options to the Razorpay Checkout as a JSONObject
+//         */
+//        try {
+//            JSONObject options = new JSONObject();
+//
+//            options.put("name", "Phigital");
+////            options.put("description", "Reference No. #123456");
+//            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
+////            options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
+//            options.put("theme.color", "#00ACED");
+//            options.put("currency", "INR");
+//            options.put("amount", amount);//pass amount in currency subunits
+//            options.put("prefill.email", "phigital@gmail.com");
+//            options.put("prefill.contact","9988776655");
+//            JSONObject retryObj = new JSONObject();
+//            retryObj.put("enabled", true);
+//            retryObj.put("max_count", 4);
+//            options.put("retry", retryObj);
+//            checkout.setKeyID("rzp_live_QEbhniXCho8QRC");
+//            checkout.open(activity, options);
+//
+//        } catch(Exception e) {
+//
+//        }
+//    }
+//    @Override
+//    public void onPaymentSuccess(String s) {
+//        Toast.makeText(this,"Please wait", Toast.LENGTH_SHORT).show();
+//        copyFirebaseData();
+//    }
+//
+//    @Override
+//    public void onPaymentError(int i, String s) {
+//        Toast.makeText(this, "Payment UnSuccess", Toast.LENGTH_SHORT).show();
+//
+//    }
+//
+//    @SuppressLint("QueryPermissionsNeeded")
+//    private void payUsingUpi(String amount, String upiId, String name, String note) {
+//
+//        Uri uri = Uri.parse("upi://pay").buildUpon()
+//                .appendQueryParameter("pa", upiId)
+//                .appendQueryParameter("pn", name)
+//                .appendQueryParameter("tr", "261433")
+//                .appendQueryParameter("tn", note)
+//                .appendQueryParameter("am", amount)
+//                .appendQueryParameter("cu", "INR")
+//                .build();
+//
+//        Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
+//        upiPayIntent.setData(uri);
+//
+//        // will always show a dialog to user to choose an app
+//        Intent chooser = Intent.createChooser(upiPayIntent, "Pay with");
+//
+//        // check if intent resolves
+//        if (null != chooser.resolveActivity(getPackageManager())) {
+//            startActivityForResult(chooser, UPI_PAYMENT);
+//        } else {
+//            Toast.makeText(this, "No UPI app found, please install one to continue", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
