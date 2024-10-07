@@ -51,50 +51,7 @@ public class GetTimeAgo extends Application {
 ////            return null;
 ////        }
 //
-//        // TODO: localize
-//        final long diff = time - now;
-//        if (diff < SECOND_MILLIS) {
-//            return "Finished";
-//        }else if (diff < MINUTE_MILLIS) {
-//            return "1 min  ";
-//        } else if (diff < 2 * MINUTE_MILLIS) {
-//            return "2 min ";
-//        }else if (diff < 3 *MINUTE_MILLIS) {
-//            return "3 min  ";
-//        } else if (diff < 4 * MINUTE_MILLIS) {
-//            return "4 min ";
-//        } else if (diff < 5 * MINUTE_MILLIS) {
-//            return "5 min ";
-//        }else if (diff < 6 *MINUTE_MILLIS) {
-//            return "6 min  ";
-//        } else if (diff < 7 * MINUTE_MILLIS) {
-//            return "7 min ";
-//        } else if (diff < 8 * MINUTE_MILLIS) {
-//            return "8 min ";
-//        }else if (diff < 9 *MINUTE_MILLIS) {
-//            return "9 min  ";
-//        } else if (diff < 10 * MINUTE_MILLIS) {
-//            return "10 min ";
-//        } else if (diff < 60 * MINUTE_MILLIS) {
-//            return MINUTE_MILLIS / diff + " 1 hours ";
-//        } else if (diff < 120 * MINUTE_MILLIS) {
-//            return "2  hour ";
-//        } else if (diff < 24 * HOUR_MILLIS) {
-//            return HOUR_MILLIS / diff + "1 day ";
-//        } else if (diff < 48 * HOUR_MILLIS) {
-//            return "2 days ";
-//        } else if (diff < 3 * DAY_MILLIS) {
-//            return "3 days ";
-//        } else if (diff < 4 * DAY_MILLIS) {
-//            return "4 days ";
-//        } else if (diff < 5 * DAY_MILLIS) {
-//            return "5 days ";
-//        } else if (diff < 6 * DAY_MILLIS) {
-//            return "6 days ";
-//        } else {
-//            return diff / DAY_MILLIS + " days ";
-//        }
-//    }
+
 
     public static String getNotificationTime(long time) {
         if (time < 1000000000000L) {
