@@ -1,5 +1,7 @@
 package com.phigital.ai.Upload;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 
@@ -66,6 +69,8 @@ public class PollActivity extends BaseActivity {
     private static final int IMAGE_PICK_CODE3 = 3000;
     private static final int IMAGE_PICK_CODE4 = 4000;
 
+    private static final int CAMERA_PERMISSION_CODE = 100;
+
     private static final int PERMISSION_CODE = 1001;
     private static final int NUM_ONE = 1;
     private static final int NUM_TWO = 2;
@@ -90,6 +95,7 @@ public class PollActivity extends BaseActivity {
         ref = FirebaseStorage.getInstance().getReference();
 
         binding.imageView.setOnClickListener(v -> onBackPressed());
+        verifyCameraPermission(PollActivity.this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         String userId = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
@@ -521,4 +527,16 @@ public class PollActivity extends BaseActivity {
         }
     }
 
+    public static void verifyCameraPermission(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(
+                    activity,
+                    new String[]{Manifest.permission.CAMERA}, // Request camera permission
+                    CAMERA_PERMISSION_CODE // Define this constant as you did earlier
+            );
+        }
+    }
 }

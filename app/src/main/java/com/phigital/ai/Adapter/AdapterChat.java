@@ -48,7 +48,7 @@ import com.phigital.ai.Activity.SearchActivity;
 import com.phigital.ai.Activity.ShareActivity;
 import com.phigital.ai.Utility.UserProfile;
 import com.phigital.ai.Utility.MediaView;
-import com.rishabhharit.roundedimageview.RoundedImageView;
+
 import com.squareup.picasso.Picasso;
 import com.tylersuehr.socialtextview.SocialTextView;
 
@@ -1365,7 +1365,7 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.MyHolder>{
         final CircleImageView circleImageView2;
         final TextView nametv;
         final SocialTextView texttv;
-        final RoundedImageView image;
+        final ImageView image;
 
         //Call
         final LinearLayout call_layout;

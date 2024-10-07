@@ -28,8 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,7 +54,7 @@ import com.phigital.ai.Post.PostDetails;
 import com.phigital.ai.PostBottomSheet;
 import com.phigital.ai.R;
 import com.phigital.ai.Utility.UserProfile;
-import com.rishabhharit.roundedimageview.RoundedImageView;
+
 import com.squareup.picasso.Picasso;
 import com.tylersuehr.socialtextview.SocialTextView;
 
@@ -69,6 +69,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import timber.log.Timber;
+
 
 //@SuppressWarnings("ALL")
 public class AdapterPostHome extends FirebaseRecyclerAdapter<ModelPost,AdapterPostHome.MyHolder> {
@@ -1548,7 +1549,7 @@ public class AdapterPostHome extends FirebaseRecyclerAdapter<ModelPost,AdapterPo
     static class MyHolder extends RecyclerView.ViewHolder{
 
         final CircleImageView pCircleImageView;
-        final RoundedImageView pMeme;
+        final ImageView pMeme;
         final ImageView more;
         final ImageView rejoy;
         final ImageView comment;

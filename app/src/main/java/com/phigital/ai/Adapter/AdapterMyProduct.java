@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.phigital.ai.Model.ModelProduct;
 import com.phigital.ai.R;
 import com.phigital.ai.Shop.UpdateProduct;
-import com.rishabhharit.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -178,7 +177,7 @@ public class AdapterMyProduct extends RecyclerView.Adapter<AdapterMyProduct.MyHo
 
     static class MyHolder extends RecyclerView.ViewHolder{
 
-        final RoundedImageView image;
+        final ImageView image;
         final TextView name;
         final TextView price;
         final TextView brandname;

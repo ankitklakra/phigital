@@ -49,7 +49,7 @@ import com.phigital.ai.Post.PostDetails;
 import com.phigital.ai.PostBottomSheet;
 import com.phigital.ai.R;
 import com.phigital.ai.Utility.UserProfile;
-import com.rishabhharit.roundedimageview.RoundedImageView;
+
 import com.squareup.picasso.Picasso;
 import com.tylersuehr.socialtextview.SocialTextView;
 
@@ -1653,7 +1653,7 @@ public class AdapterPost2 extends RecyclerView.Adapter<AdapterPost2.MyHolder>  {
     static class MyHolder extends RecyclerView.ViewHolder{
 
         final CircleImageView pCircleImageView;
-        final RoundedImageView pMeme;
+        final ImageView pMeme;
         final ImageView more;
         final ImageView rejoy;
         final ImageView comment;

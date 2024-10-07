@@ -101,31 +101,35 @@ public class SearchUserFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 modeluserList.clear();
-                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ModelUser modelUser = ds.getValue(ModelUser.class);
                     if (!userId.equals(Objects.requireNonNull(modelUser).getId())) {
                         modeluserList.add(modelUser);
                     }
-                    adapterSuggestion = new AdapterUserSuggestion2(getActivity(), modeluserList);
-                    binding.searchuser.setAdapter(adapterSuggestion);
-                    adapterSuggestion.notifyItemInserted(modeluserList.size()-1);
-                    if (adapterSuggestion.getItemCount() == 0){
-                        binding.progressBar.setVisibility(View.GONE);
-                        binding.searchuser.setVisibility(View.GONE);
-                    }else{
-                        binding.progressBar.setVisibility(View.GONE);
-                        binding.searchuser.setVisibility(View.VISIBLE);
-                    }
+                }
+                // Shuffle the user list to show random users each time
+                Collections.shuffle(modeluserList);
 
+                adapterSuggestion = new AdapterUserSuggestion2(getActivity(), modeluserList);
+                binding.searchuser.setAdapter(adapterSuggestion);
+                adapterSuggestion.notifyDataSetChanged();
+
+                if (adapterSuggestion.getItemCount() == 0) {
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.searchuser.setVisibility(View.GONE);
+                } else {
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.searchuser.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                // Handle error
             }
         });
     }
+
 
     @Override
     //Pressed return button - returns to the results menu

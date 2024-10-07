@@ -42,9 +42,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.mapbox.api.geocoding.v5.models.CarmenFeature;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
+
 import com.phigital.ai.Adapter.AdapterUsersPost;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelUser;
@@ -80,9 +78,12 @@ public class PostActivity extends BaseActivity implements View.OnClickListener {
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+
     };
     private static final int MY_READ_PERMISSION_CODE = 101;
+    private static final int CAMERA_PERMISSION_CODE = 100;
 
     String mLocation = "";
 
@@ -134,17 +135,19 @@ public class PostActivity extends BaseActivity implements View.OnClickListener {
             onBackPressed();
         });
 
-        binding.location.setOnClickListener(v -> {
-            Intent intent = new PlaceAutocomplete.IntentBuilder()
-                    .accessToken("pk.eyJ1IjoicGhpZ2l0YWwtYWkiLCJhIjoiY2tzaGQ4dWJrMTloZzMwb2ZocHdwZzg5ZiJ9.i4HyC_bMbjwyZiAdwIbO7w")
-                    .placeOptions(PlaceOptions.builder()
-                            .backgroundColor(Color.parseColor("#ffffff"))
-                            .build(PlaceOptions.MODE_CARDS))
-                    .build(this);
-            startActivityForResult(intent, LOCATION_PICK_CODE);
-        });
+//        binding.location.setOnClickListener(v -> {
+//            Intent intent = new PlaceAutocomplete.IntentBuilder()
+//                    .accessToken("pk.eyJ1IjoicGhpZ2l0YWwtYWkiLCJhIjoiY2tzaGQ4dWJrMTloZzMwb2ZocHdwZzg5ZiJ9.i4HyC_bMbjwyZiAdwIbO7w")
+//                    .placeOptions(PlaceOptions.builder()
+//                            .backgroundColor(Color.parseColor("#ffffff"))
+//                            .build(PlaceOptions.MODE_CARDS))
+//                    .build(this);
+//            startActivityForResult(intent, LOCATION_PICK_CODE);
+//        });
 
         verifyStoragePermission(PostActivity.this);
+        verifyCameraPermission(PostActivity.this);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         String userId = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
@@ -436,6 +439,7 @@ public class PostActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -454,17 +458,32 @@ public class PostActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        // Handle storage permission
         if (requestCode == PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getApplicationContext(), "Storage permission Allowed", duration).show();
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(), "Storage permission Allowed", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Storage permission is required", duration).show();
+                Toast.makeText(getApplicationContext(), "Storage permission is required", Toast.LENGTH_SHORT).show();
             }
         }
+
+        // Handle read external storage permission
         if (requestCode == MY_READ_PERMISSION_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getApplicationContext(), "Read external storage Permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Read external storage permission is required", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        // Handle camera permission
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getApplicationContext(), "Camera Permission granted", Toast.LENGTH_SHORT).show();
+
+            } else {
+                Toast.makeText(getApplicationContext(), "Camera permission is required to use the camera", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -488,11 +507,11 @@ public class PostActivity extends BaseActivity implements View.OnClickListener {
             }
         }
         //Location
-        if (resultCode == Activity.RESULT_OK && requestCode == LOCATION_PICK_CODE && data != null) {
-            CarmenFeature feature = PlaceAutocomplete.getPlace(data);
-             binding.loctv.setText(feature.text());
-            mLocation = feature.text();
-        }
+//        if (resultCode == Activity.RESULT_OK && requestCode == LOCATION_PICK_CODE && data != null) {
+//            CarmenFeature feature = PlaceAutocomplete.getPlace(data);
+//             binding.loctv.setText(feature.text());
+//            mLocation = feature.text();
+//        }
     }
 
 
@@ -503,8 +522,23 @@ public class PostActivity extends BaseActivity implements View.OnClickListener {
                     activity,
                     PERMISSIONS_STORAGE,
                     REQUEST_EXTERNAL_STORAGE
+
             );
         }
     }
+
+    public static void verifyCameraPermission(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(
+                    activity,
+                    new String[]{Manifest.permission.CAMERA}, // Request camera permission
+                    CAMERA_PERMISSION_CODE // Define this constant as you did earlier
+            );
+        }
+    }
+
 
 }

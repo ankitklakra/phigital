@@ -199,7 +199,7 @@ public class SearchActivity extends BaseActivity {
 //        });
 
         binding.nsv.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-            if(scrollY == v.getChildAt(0).getMeasuredHeight()-v.getMeasuredHeight()){
+            if (scrollY > (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight() - 200)) {
                 switch (type) {
                     case "post":
                         mCurrenPage1++;
@@ -380,6 +380,7 @@ public class SearchActivity extends BaseActivity {
                         ModelPost modelPost = ds.getValue(ModelPost.class);
                         modelPostsList.add(modelPost);
                     }
+                    Collections.shuffle(modelPostsList);
                     runOnUiThread(() -> {
                         adapterPost = new AdapterPost(SearchActivity.this, modelPostsList);
                         binding.post.setAdapter(adapterPost);
@@ -416,6 +417,7 @@ public class SearchActivity extends BaseActivity {
                         ModelGroups modelGroups = ds.getValue(ModelGroups.class);
                         modelGroupsList.add(modelGroups);
                     }
+                    Collections.shuffle(modelGroupsList);
                     runOnUiThread(() -> {
                         adapterGroups = new AdapterGroups(SearchActivity.this, modelGroupsList);
                         binding.groups.setAdapter(adapterGroups);
@@ -454,6 +456,7 @@ public class SearchActivity extends BaseActivity {
                             modeluserList.add(modelUser);
                         }
                     }
+                    Collections.shuffle(modeluserList);
                     runOnUiThread(() -> {
                         adapterUsers = new AdapterSearchUsers(SearchActivity.this, modeluserList);
                         binding.users.setAdapter(adapterUsers);

@@ -1,6 +1,7 @@
 package com.phigital.ai.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,9 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,8 +36,7 @@ import com.phigital.ai.SharedPref;
 import com.phigital.ai.Upload.HireActivity;
 import com.phigital.ai.databinding.ActivityEditProfileBinding;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 import com.tsongkha.spinnerdatepicker.DatePicker;
 import com.tsongkha.spinnerdatepicker.DatePickerDialog;
 import com.tsongkha.spinnerdatepicker.SpinnerDatePickerDialogBuilder;
@@ -375,13 +377,13 @@ public class EditProfile extends BaseActivity implements DatePickerDialog.OnDate
 
 
     private void selectImage(){
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setActivityMenuIconColor(getResources().getColor(R.color.colorPrimary))
-                .setActivityTitle("Profile Photo")
-                .setFixAspectRatio(true)
-                .setAspectRatio(1,1)
-                .start(this);
+
+            ImagePicker.with(this)
+                    .crop()                    // Crop image
+                    .compress(1024)            // Final image size will be less than 1 MB
+                    .maxResultSize(1080, 1080) // Set maximum image resolution
+                    .start();
+
 
     }
 
@@ -398,22 +400,24 @@ public class EditProfile extends BaseActivity implements DatePickerDialog.OnDate
         }
     }
 
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                assert result != null;
-                image_uri = result.getUri();
-                binding.profileImage.setImageURI(image_uri);
-                binding.profileImage.setVisibility(View.VISIBLE);
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-                Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            // The URI of the cropped image
+            image_uri = data.getData();
+            binding.profileImage.setImageURI(image_uri); // Show image in ImageView
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            // Handle error
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            // Task was canceled
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     @SuppressLint("SetTextI18n")
     @Override

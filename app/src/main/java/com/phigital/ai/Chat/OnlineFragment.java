@@ -69,16 +69,15 @@ public class OnlineFragment extends Fragment {
                 userList.clear();
                 for (DataSnapshot ds: snapshot.getChildren()){
                     ModelUser user = ds.getValue(ModelUser.class);
-                    if (user != null){
+                    if (user != null && user.getId() != null && user.getStatus() != null){
                         for (String id : followingList) {
-                            if (!muserId.equals(id) &&Objects.requireNonNull(user).getId().equals(id) && Objects.requireNonNull(user).getStatus().equals("online")) {
+                            if (!muserId.equals(id) && user.getId().equals(id) && user.getStatus().equals("online")) {
                                 userList.add(user);
                             }
                         }
                     }
-
-
                 }
+
                 adapterChatList = new AdapterChatList(getActivity(), userList);
                 binding.recyclerView2.setAdapter(adapterChatList);
             }

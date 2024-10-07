@@ -36,7 +36,6 @@ import com.phigital.ai.Notifications.Token;
 import com.phigital.ai.R;
 import com.squareup.picasso.Picasso;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -45,6 +44,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import timber.log.Timber;
+
 
 public class AdapterAdminGroups extends RecyclerView.Adapter<AdapterAdminGroups.MyHolder> {
 

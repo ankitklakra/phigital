@@ -46,10 +46,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.hendraanggrian.appcompat.widget.SocialEditText;
-import com.mapbox.api.geocoding.v5.models.CarmenFeature;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
+
+import com.hendraanggrian.appcompat.socialview.widget.SocialEditText;
 import com.phigital.ai.Adapter.AdapterUsersPost;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelUser;
@@ -189,15 +187,15 @@ public class SponsorshipActivity extends BaseActivity implements View.OnClickLis
             }
         });
 
-        binding.location.setOnClickListener(v -> {
-            Intent intent = new PlaceAutocomplete.IntentBuilder()
-                    .accessToken("pk.eyJ1IjoicGhpZ2l0YWwtYWkiLCJhIjoiY2tzaGQ4dWJrMTloZzMwb2ZocHdwZzg5ZiJ9.i4HyC_bMbjwyZiAdwIbO7w")
-                    .placeOptions(PlaceOptions.builder()
-                            .backgroundColor(Color.parseColor("#ffffff"))
-                            .build(PlaceOptions.MODE_CARDS))
-                    .build(this);
-            startActivityForResult(intent, LOCATION_PICK_CODE);
-        });
+//        binding.location.setOnClickListener(v -> {
+//            Intent intent = new PlaceAutocomplete.IntentBuilder()
+//                    .accessToken("pk.eyJ1IjoicGhpZ2l0YWwtYWkiLCJhIjoiY2tzaGQ4dWJrMTloZzMwb2ZocHdwZzg5ZiJ9.i4HyC_bMbjwyZiAdwIbO7w")
+//                    .placeOptions(PlaceOptions.builder()
+//                            .backgroundColor(Color.parseColor("#ffffff"))
+//                            .build(PlaceOptions.MODE_CARDS))
+//                    .build(this);
+//            startActivityForResult(intent, LOCATION_PICK_CODE);
+//        });
 
         verifyStoragePermission(SponsorshipActivity.this);
 
@@ -571,6 +569,7 @@ public class SponsorshipActivity extends BaseActivity implements View.OnClickLis
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -625,11 +624,11 @@ public class SponsorshipActivity extends BaseActivity implements View.OnClickLis
             }
         }
         //Location
-        if (resultCode == Activity.RESULT_OK && requestCode == LOCATION_PICK_CODE && data != null) {
-            CarmenFeature feature = PlaceAutocomplete.getPlace(data);
-            binding.loctv.setText(feature.text());
-            mLocation = feature.text();
-        }
+//        if (resultCode == Activity.RESULT_OK && requestCode == LOCATION_PICK_CODE && data != null) {
+//            CarmenFeature feature = PlaceAutocomplete.getPlace(data);
+//            binding.loctv.setText(feature.text());
+//            mLocation = feature.text();
+//        }
     }
 
     public static void verifyStoragePermission(Activity activity){

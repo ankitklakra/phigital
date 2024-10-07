@@ -36,9 +36,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.mapbox.api.geocoding.v5.models.CarmenFeature;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete;
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions;
+
 import com.phigital.ai.Adapter.AdapterUsersPost;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelUser;
@@ -135,15 +133,15 @@ public class UpdatePost extends BaseActivity {
             onBackPressed();
         });
 
-        binding.location.setOnClickListener(v -> {
-            Intent intent2 = new PlaceAutocomplete.IntentBuilder()
-                    .accessToken("pk.eyJ1IjoicGhpZ2l0YWwtYWkiLCJhIjoiY2tzaGQ4dWJrMTloZzMwb2ZocHdwZzg5ZiJ9.i4HyC_bMbjwyZiAdwIbO7w")
-                    .placeOptions(PlaceOptions.builder()
-                            .backgroundColor(Color.parseColor("#ffffff"))
-                            .build(PlaceOptions.MODE_CARDS))
-                    .build(this);
-            startActivityForResult(intent2, LOCATION_PICK_CODE);
-        });
+//        binding.location.setOnClickListener(v -> {
+//            Intent intent2 = new PlaceAutocomplete.IntentBuilder()
+//                    .accessToken("pk.eyJ1IjoicGhpZ2l0YWwtYWkiLCJhIjoiY2tzaGQ4dWJrMTloZzMwb2ZocHdwZzg5ZiJ9.i4HyC_bMbjwyZiAdwIbO7w")
+//                    .placeOptions(PlaceOptions.builder()
+//                            .backgroundColor(Color.parseColor("#ffffff"))
+//                            .build(PlaceOptions.MODE_CARDS))
+//                    .build(this);
+//            startActivityForResult(intent2, LOCATION_PICK_CODE);
+//        });
 
         firebaseAuth = FirebaseAuth.getInstance();
         String userId = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
@@ -462,12 +460,12 @@ public class UpdatePost extends BaseActivity {
         }
 
         //Location
-        if (resultCode == Activity.RESULT_OK && requestCode == LOCATION_PICK_CODE && data != null) {
-            CarmenFeature feature = PlaceAutocomplete.getPlace(data);
-            binding.loctv.setText(feature.text());
-            mLocation = feature.text();
-            change = "updated";
-        }
+//        if (resultCode == Activity.RESULT_OK && requestCode == LOCATION_PICK_CODE && data != null) {
+//            CarmenFeature feature = PlaceAutocomplete.getPlace(data);
+//            binding.loctv.setText(feature.text());
+//            mLocation = feature.text();
+//            change = "updated";
+//        }
     }
 
     private void showSingleImage(Uri uri) {

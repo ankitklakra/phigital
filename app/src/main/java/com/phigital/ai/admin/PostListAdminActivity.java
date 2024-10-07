@@ -22,7 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.muddzdev.styleabletoast.StyleableToast;
+import com.hendraanggrian.appcompat.socialview.widget.SocialEditText;
+import com.hendraanggrian.appcompat.socialview.widget.SocialTextView;
 import com.phigital.ai.Adapter.AdapterAdminPost;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelPost;
@@ -32,6 +33,8 @@ import com.phigital.ai.SharedPref;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import io.github.muddz.styleabletoast.StyleableToast;
 
 public class PostListAdminActivity extends BaseActivity {
 
@@ -57,7 +60,7 @@ public class PostListAdminActivity extends BaseActivity {
         setContentView(R.layout.activity_user_list);
         ImageView imageView3 = findViewById(R.id.imageView3);
         imageView3.setOnClickListener(v -> onBackPressed());
-        EditText editText = findViewById(R.id.editText);
+        SocialEditText editText = findViewById(R.id.editText);
         trendingRv = findViewById(R.id.trendingRv);
         progressBar = findViewById(R.id.pb);
         cv = findViewById(R.id.cv);
@@ -85,7 +88,7 @@ public class PostListAdminActivity extends BaseActivity {
             }
         });
         //EdiText
-        trendingRv.setHasFixedSize(true);
+//        trendingRv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);

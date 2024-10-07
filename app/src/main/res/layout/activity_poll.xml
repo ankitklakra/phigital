@@ -285,7 +285,7 @@
                     android:contentDescription="@string/contentdescription" />
 
 
-                <com.rishabhharit.roundedimageview.RoundedImageView
+                <ImageView
                     android:id="@+id/ima1"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -295,7 +295,7 @@
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     app:cornerRadius="10dp"
-                    app:roundedCorners="all" />
+                />
             </RelativeLayout>
 
                 <RelativeLayout
@@ -350,7 +350,7 @@
                     app:tint="@color/colorPrimary"
                     android:contentDescription="@string/contentdescription" />
 
-                <com.rishabhharit.roundedimageview.RoundedImageView
+                <ImageView
                     android:id="@+id/imb2"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -360,7 +360,7 @@
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     app:cornerRadius="10dp"
-                    app:roundedCorners="all" />
+                     />
             </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -413,7 +413,7 @@
                     app:tint="@color/colorPrimary"
                     android:contentDescription="@string/contentdescription" />
 
-                <com.rishabhharit.roundedimageview.RoundedImageView
+                <ImageView
                     android:id="@+id/imc3"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -423,7 +423,7 @@
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     app:cornerRadius="10dp"
-                    app:roundedCorners="all" />
+                     />
             </RelativeLayout>
 
                 <RelativeLayout
@@ -476,7 +476,7 @@
                     app:tint="@color/colorPrimary"
                     android:contentDescription="@string/contentdescription" />
 
-                <com.rishabhharit.roundedimageview.RoundedImageView
+                <ImageView
                     android:id="@+id/imd4"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
@@ -486,7 +486,7 @@
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     app:cornerRadius="10dp"
-                    app:roundedCorners="all" />
+                     />
                 </RelativeLayout>
 
                 <RelativeLayout

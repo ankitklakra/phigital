@@ -256,7 +256,7 @@
 
             </FrameLayout>
 
-<!--            <com.zolad.zoominimageview.ZoomInImageView-->
+<!--            <ImageView-->
 <!--                android:id="@+id/imageView"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="wrap_content"-->
@@ -270,7 +270,7 @@
 <!--                app:layout_constraintTop_toTopOf="parent"-->
 <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-            <com.rishabhharit.roundedimageview.RoundedImageView
+            <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

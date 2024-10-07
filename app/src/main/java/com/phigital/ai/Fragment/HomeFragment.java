@@ -2,56 +2,35 @@ package com.phigital.ai.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.phigital.ai.Activity.AdditionalSearch;
-import com.phigital.ai.Activity.SearchActivity;
-import com.phigital.ai.Activity.VaultActivity;
-import com.phigital.ai.Adapter.AdapterAdminPost;
 import com.phigital.ai.Adapter.AdapterPost;
-import com.phigital.ai.Adapter.AdapterPost2;
-import com.phigital.ai.Adapter.AdapterPostHome;
 import com.phigital.ai.Adapter.AdapterStory;
-import com.phigital.ai.Adapter.AdapterUserSuggestion;
-import com.phigital.ai.Adapter.AdapterUserSuggestion2;
-import com.phigital.ai.Adapter.NewAdapter;
 import com.phigital.ai.Chat.ChatViewPagerActivity;
-import com.phigital.ai.MainActivity;
-import com.phigital.ai.Menu.ActivityManageAccount;
 import com.phigital.ai.Model.ModelPost;
 import com.phigital.ai.Model.ModelStory;
-import com.phigital.ai.Model.ModelUser;
 import com.phigital.ai.Notifications.NotificationScreen;
 import com.phigital.ai.R;
 import com.phigital.ai.Upload.AddStoryActivity;
@@ -59,9 +38,7 @@ import com.phigital.ai.Upload.ArticleActivity;
 import com.phigital.ai.Upload.PollActivity;
 import com.phigital.ai.Upload.PostActivity;
 import com.phigital.ai.Upload.SponsorshipActivity;
-import com.phigital.ai.Utility.MyFollowing;
 import com.phigital.ai.databinding.FragmentHomeBinding;
-import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -69,7 +46,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
@@ -81,6 +57,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     int ITEM_LOAD_COUNT= 20;
     private int mCurrenPage = 1;
+    private static final int TOTAL_ITEM_EACH_LOAD = 20;
+    private int currentPage = 1;
+    long initial = 0;
 
     List<ModelPost> postList = new ArrayList<>();
     List<ModelPost> sponsorshipList = new ArrayList<>();
@@ -93,6 +72,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private String userId,node;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -102,6 +82,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         checkSFollowing();
         createBottomSheet();
+
+        getAllPost();
 /*  Tried second way of implementing same thing
        getLastKeyFromFirebase();
         adapter=new AdapterPost2(getContext());
@@ -112,7 +94,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         binding.postView.setAdapter(adapter);
         loadPosts();
         */
-        loadPosts();
+//        loadPosts();
 /*        Tried third way of implementing same thing
 loadPosts();
 
@@ -139,9 +121,9 @@ loadPosts();
         // Checking if user reached bottom of scroll view so we can fetch new data to load
         binding.cv.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             if(scrollY == v.getChildAt(0).getMeasuredHeight()-v.getMeasuredHeight()){
-                loadPosts();
-                mCurrenPage++;
-                binding.postView.setVisibility(View.GONE);
+               binding.more.setVisibility(View.VISIBLE);
+//                mCurrenPage++;
+//                binding.postView.setVisibility(View.GONE);
             }
         });
 
@@ -165,6 +147,7 @@ loadPosts();
         binding.postView.setAdapter(adapterPostHome);
     }*/
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -178,10 +161,8 @@ loadPosts();
 
         binding.postView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setStackFromEnd(true);
-        layoutManager.setReverseLayout(true);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.postView.setLayoutManager(layoutManager);
-
         // Bottomsheet to post new user data
         binding.add.setOnClickListener(v -> uploadbottomsheet.show());
         // Opening search fragment
@@ -196,6 +177,10 @@ loadPosts();
         binding.chat.setOnClickListener(v -> startActivity(new Intent(getActivity(), ChatViewPagerActivity.class)));
         binding.notification.setOnClickListener(v -> startActivity(new Intent(getActivity(), NotificationScreen.class)));
         binding.counttv.setOnClickListener(v -> startActivity(new Intent(getActivity(), NotificationScreen.class)));
+        binding.more.setOnClickListener(v -> {
+            binding.more.setText("Loading...");
+            loadMoreData();
+        });
 
         //Notification message
         FirebaseDatabase.getInstance().getReference("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child("Count").addValueEventListener(new ValueEventListener() {
@@ -397,48 +382,136 @@ loadPosts();
     }*/
 
     // Current solution which remove user post after 20 posts and load next 20 post
-    private void loadPosts() {
-        binding.pbs.setVisibility(View.VISIBLE);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
-        Query q = ref.limitToLast(mCurrenPage * ITEM_LOAD_COUNT);
-        q.addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               postList.clear();
-                AsyncTask.execute(() -> {
-                    for (DataSnapshot ds: dataSnapshot.getChildren()){
-                        ModelPost modelPost = ds.getValue(ModelPost.class);
-                        postList.add(modelPost);
-                    }
-                    if (isAdded()){
-                        requireActivity().runOnUiThread(() -> {
-                            if (TextUtils.isEmpty(node)){
-                                adapterPost = new AdapterPost(getActivity(),postList);
-                                binding.postView.setAdapter(adapterPost);
-                                adapterPost.notifyDataSetChanged();
+//    private void loadPosts() {
+//        binding.pbs.setVisibility(View.VISIBLE);
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");
+//        Query q = ref.orderByChild("pId").limitToLast(mCurrenPage * ITEM_LOAD_COUNT);
+//        q.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @RequiresApi(api = Build.VERSION_CODES.N)
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                List<ModelPost> newPosts = new ArrayList<>();
+//                Set<String> uniquePostIds = new HashSet<>(); // Keep track of unique post IDs
+//
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    ModelPost modelPost = ds.getValue(ModelPost.class);
+//
+//                    // Check if the post ID is unique to prevent duplicates
+//                    if (modelPost != null && !uniquePostIds.contains(modelPost.getId())) {
+//                        uniquePostIds.add(modelPost.getId());
+//                        newPosts.add(modelPost);
+//                    }
+//                }
+//
+//                if (TextUtils.isEmpty(node)) {
+//                    postList.addAll(newPosts);
+//                    Log.d("PostListSize", "Number of posts before in postList: " + postList.size());
+//
+//                    if (adapterPost != null) {
+//                        adapterPost.notifyDataSetChanged();
+//                    } else {
+//                        // Initialize the adapterPost here if it's null
+//                        adapterPost = new AdapterPost(getActivity(), postList);
+//                        binding.postView.setAdapter(adapterPost);
+//                        adapterPost.notifyDataSetChanged();
+//                    }
+//                } else {
+//                    List<ModelPost> firstNElementsList = newPosts.stream().limit(20).collect(Collectors.toList());
+//                    postList.addAll(firstNElementsList);
+//                    if (adapterPost != null) {
+//                        int startPosition = adapterPost.getItemCount();
+//                        postList.addAll(firstNElementsList);
+//                        adapterPost.notifyItemRangeInserted(startPosition, firstNElementsList.size());
+//                    } else {
+//                        // Initialize the adapterPost here if it's null
+//                        adapterPost = new AdapterPost(getActivity(), postList);
+//                        binding.postView.setAdapter(adapterPost);
+//                        adapterPost.notifyDataSetChanged();
+//                    }
+//
+//                }
+//
+//                binding.pbs.setVisibility(View.GONE);
+//                binding.postView.setVisibility(View.VISIBLE);
+//                node = "some";
+//                Log.d("PostListSize", "Number of posts in postList: " + postList.size());
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle onCancelled
+//                binding.pbs.setVisibility(View.GONE);
+//            }
+//        });
+//    }
+    private void loadMoreData() {
+        Log.d("HomeFragment", "Current Page before increment: " + currentPage);
+        currentPage++;
+        Log.d("HomeFragment", "Current Page after increment: " + currentPage);
+        getAllPost();
+        binding.postView.setVisibility(View.GONE);
+
+    }
+    private void getAllPost() {
+
+        int itemsToLoad = currentPage * TOTAL_ITEM_EACH_LOAD;
+
+        if (itemsToLoad > 0) {
+            FirebaseDatabase.getInstance().getReference("Posts").limitToLast(itemsToLoad)
+                    .addValueEventListener(new ValueEventListener() {
+                        @SuppressLint("SetTextI18n")
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            postList.clear();
+
+                            for (DataSnapshot ds : snapshot.getChildren()) {
+                                ModelPost modelPost = ds.getValue(ModelPost.class);
+                                postList.add(modelPost);
+                            }
+                            Collections.reverse(postList);
+
+                            // Adjust the range of posts to display based on the currentPage
+                            int startIdx = Math.max(0, postList.size() - TOTAL_ITEM_EACH_LOAD);
+                            List<ModelPost> postsToDisplay = postList.subList(startIdx, postList.size());
+                            Log.d("HomeFragment", "post list: " + postList.size());
+                            adapterPost = new AdapterPost(getActivity(), postsToDisplay);
+                            binding.postView.setAdapter(adapterPost);
+                            binding.pbs.setVisibility(View.GONE);
+                            binding.postView.setVisibility(View.VISIBLE);
+
+
+
+                            // Adjust visibility and text of the "Show more" button
+                            if (adapterPost.getItemCount() == 0) {
                                 binding.pbs.setVisibility(View.GONE);
-                                node = "some" ;
-                            }else{
-                                List<ModelPost> firstNElementsList = postList.stream().limit(20).collect(Collectors.toList());
-                                adapterPost = new AdapterPost(getActivity(),firstNElementsList);
-                                binding.postView.setAdapter(adapterPost);
-                                adapterPost.notifyDataSetChanged();
+                                binding.postView.setVisibility(View.GONE);
+                                binding.more.setVisibility(View.GONE);
+                            } else {
                                 binding.pbs.setVisibility(View.GONE);
                                 binding.postView.setVisibility(View.VISIBLE);
+                                if (adapterPost.getItemCount() >= initial) {
+                                    binding.more.setVisibility(View.GONE);
+//                                    currentPage--;
+                                    binding.more.setText("Show more");
+                                } else {
+                                    binding.more.setVisibility(View.VISIBLE);
+                                    binding.more.setText("Show more");
+                                }
                             }
+                        }
 
-                        });
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            // Handle onCancelled
+                            binding.pbs.setVisibility(View.GONE);
+                        }
+                    });
+        }
     }
+
+
+
 
 /*  Redundant code not working
   private void loadPosts2() {
@@ -553,7 +626,7 @@ loadPosts();
         });
     }
 
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -582,6 +655,12 @@ loadPosts();
                 Intent intentfeel = new Intent(getContext(), SponsorshipActivity.class);
                 startActivity(intentfeel);
                 break;
+            case R.id.more:
+                binding.more.setText("Loading...");
+                loadMoreData();
+
+                break;
+
         }
     }
 

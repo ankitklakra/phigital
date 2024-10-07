@@ -50,7 +50,6 @@ import com.phigital.ai.PostBottomSheet;
 import com.phigital.ai.R;
 import com.phigital.ai.Activity.SearchActivity;
 import com.phigital.ai.Utility.UserProfile;
-import com.rishabhharit.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.tylersuehr.socialtextview.SocialTextView;
 
@@ -65,6 +64,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import timber.log.Timber;
+
 
 public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder>  {
 
@@ -1656,7 +1656,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyHolder>  {
     static class MyHolder extends RecyclerView.ViewHolder{
 
         final CircleImageView pCircleImageView;
-        final RoundedImageView pMeme;
+        final ImageView pMeme;
         final ImageView more;
         final ImageView rejoy;
         final ImageView comment;

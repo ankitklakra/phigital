@@ -126,7 +126,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.zolad.zoominimageview.ZoomInImageView
+    <ImageView
         android:id="@+id/meme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

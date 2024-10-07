@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.muddzdev.styleabletoast.StyleableToast;
 import com.phigital.ai.Adapter.AdapterUsers;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelUser;
@@ -29,6 +28,8 @@ import com.phigital.ai.databinding.ActivityUserListBinding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import io.github.muddz.styleabletoast.StyleableToast;
 
 public class UserListActivity extends BaseActivity {
 

@@ -44,7 +44,6 @@ import com.phigital.ai.Model.ModelPoll;
 import com.phigital.ai.R;
 import com.phigital.ai.Utility.UserProfile;
 import com.phigital.ai.Utility.MediaView;
-import com.rishabhharit.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
@@ -910,11 +909,11 @@ public class AdapterAdminPoll extends RecyclerView.Adapter<AdapterAdminPoll.MyHo
         final SeekBar seek_bar3;
         final SeekBar seek_bar4;
 
-        final RoundedImageView ima1;
-        final RoundedImageView imb2;
-        final RoundedImageView imc3;
-        final RoundedImageView imd4;
-        final RoundedImageView imtop;
+        final ImageView ima1;
+        final ImageView imb2;
+        final ImageView imc3;
+        final ImageView imd4;
+        final ImageView imtop;
         final ImageView more;
         final ImageView like_img;
         final ImageView eye;

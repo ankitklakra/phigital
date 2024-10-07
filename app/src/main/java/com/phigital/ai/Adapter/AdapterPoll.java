@@ -19,34 +19,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.phigital.ai.GetTimeAgo;
 import com.phigital.ai.Model.ModelPoll;
-import com.phigital.ai.Model.ModelUser;
 import com.phigital.ai.R;
-import com.phigital.ai.Utility.UserProfile;
 import com.phigital.ai.Utility.MediaView;
-import com.rishabhharit.roundedimageview.RoundedImageView;
+import com.phigital.ai.Utility.UserProfile;
 import com.squareup.picasso.Picasso;
-
 
 import org.jetbrains.annotations.NotNull;
 
@@ -994,11 +985,11 @@ public class AdapterPoll extends RecyclerView.Adapter<AdapterPoll.MyHolder> {
         final SeekBar seek_bar3;
         final SeekBar seek_bar4;
 
-        final RoundedImageView ima1;
-        final RoundedImageView imb2;
-        final RoundedImageView imc3;
-        final RoundedImageView imd4;
-        final RoundedImageView imtop;
+        final ImageView ima1;
+        final ImageView imb2;
+        final ImageView imc3;
+        final ImageView imd4;
+        final ImageView imtop;
         final ImageView more;
         final ImageView like_img;
         final ImageView eye;

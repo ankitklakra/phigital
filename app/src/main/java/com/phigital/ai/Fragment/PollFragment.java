@@ -106,7 +106,7 @@ public class PollFragment extends Fragment {
         binding.storyView.setAdapter(story);
 
         binding.chat.setOnClickListener(v1 -> startActivity(new Intent(getActivity(), ChatViewPagerActivity.class)));
-        binding.buy.setOnClickListener(v1 -> startActivity(new Intent(getActivity(), StoreActivity.class)));
+       // binding.buy.setOnClickListener(v1 -> startActivity(new Intent(getActivity(), StoreActivity.class)));
         binding.notification.setOnClickListener(v2 -> startActivity(new Intent(getActivity(), NotificationScreen.class)));
 
         //Notification

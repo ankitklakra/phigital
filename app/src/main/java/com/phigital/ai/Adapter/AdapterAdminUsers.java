@@ -30,7 +30,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
-import com.muddzdev.styleabletoast.StyleableToast;
 import com.phigital.ai.Model.ModelUser;
 import com.phigital.ai.Notifications.Data;
 import com.phigital.ai.Notifications.Sender;

@@ -1,6 +1,8 @@
 package com.phigital.ai.Upload;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.phigital.ai.BaseActivity;
@@ -54,6 +57,9 @@ public class ArticleActivity extends BaseActivity {
     String name, dp, id;
 
     private static final int PERMISSION_CODE = 1001;
+
+    private static final int CAMERA_PERMISSION_CODE = 100;
+
     SharedPref sharedPref;
     Uri resulturi;
     @Override
@@ -71,6 +77,7 @@ public class ArticleActivity extends BaseActivity {
         binding.galleryLayout.setVisibility(View.GONE);
         binding.articleLayout.setVisibility(View.VISIBLE);
         ref = FirebaseStorage.getInstance().getReference();
+        verifyCameraPermission(ArticleActivity.this);
 
         binding.imageView.setOnClickListener(v -> {
             Intent nextIntent = new Intent(context, MainActivity.class);
@@ -252,4 +259,16 @@ public class ArticleActivity extends BaseActivity {
 
     }
 
+    public static void verifyCameraPermission(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(
+                    activity,
+                    new String[]{Manifest.permission.CAMERA}, // Request camera permission
+                    CAMERA_PERMISSION_CODE // Define this constant as you did earlier
+            );
+        }
+    }
 }

@@ -187,11 +187,11 @@ public class MainActivity extends BaseActivity {
                     case R.id.home:
                         selectedFragment = new HomeFragment();
                         break;
-                    case R.id.video:
-//                        selectedFragment = new SearchUserFragment();
-                        String url ="https://youtube.com/shorts/uJAbB00j-yI?feature=share";
-                        Intent intent = new Intent (Intent.ACTION_VIEW, Uri.parse(url));
-                        startActivity(intent);
+                    case R.id.search:
+                       selectedFragment = new SearchUserFragment();
+//                        String url ="https://youtube.com/shorts/uJAbB00j-yI?feature=share";
+//                        Intent intent = new Intent (Intent.ACTION_VIEW, Uri.parse(url));
+//                        startActivity(intent);
                         break;
                     case R.id.poll:
                         selectedFragment = new PollFragment();

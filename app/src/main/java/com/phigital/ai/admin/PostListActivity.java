@@ -3,23 +3,17 @@ package com.phigital.ai.admin;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,9 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.muddzdev.styleabletoast.StyleableToast;
+import com.hendraanggrian.appcompat.socialview.widget.SocialEditText;
 import com.phigital.ai.Adapter.AdapterAdminPost;
-import com.phigital.ai.Adapter.AdapterPost;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelPost;
 import com.phigital.ai.R;
@@ -38,7 +31,8 @@ import com.phigital.ai.SharedPref;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.RunnableFuture;
+
+import io.github.muddz.styleabletoast.StyleableToast;
 
 public class PostListActivity extends BaseActivity {
 
@@ -64,7 +58,7 @@ public class PostListActivity extends BaseActivity {
         setContentView(R.layout.activity_user_list);
         ImageView imageView3 = findViewById(R.id.imageView3);
         imageView3.setOnClickListener(v -> onBackPressed());
-        EditText editText = findViewById(R.id.editText);
+        SocialEditText editText = findViewById(R.id.editText);
         trendingRv = findViewById(R.id.trendingRv);
         progressBar = findViewById(R.id.pb);
         cv = findViewById(R.id.cv);
@@ -92,7 +86,7 @@ public class PostListActivity extends BaseActivity {
             }
         });
         //EdiText
-        trendingRv.setHasFixedSize(true);
+//        trendingRv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);

@@ -981,10 +981,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.help:
                 settingbottomsheet.cancel();
-                String yt = "https://www.youtube.com/channel/UCP7S25lgHYznXgzX_83TTBQ";
-                Intent ytin = new Intent(Intent.ACTION_VIEW);
-                ytin.setData(Uri.parse(yt));
-                startActivity(ytin);
+                String url4 = "https://sites.google.com/view/phigital/help";
+                Intent i4 = new Intent(Intent.ACTION_VIEW);
+                i4.setData(Uri.parse(url4));
+                startActivity(i4);
                 break;
             case R.id.termsandpolicy:
                 settingbottomsheet.cancel();

@@ -37,6 +37,7 @@
 
         <RelativeLayout
             android:id="@+id/buy"
+            android:visibility="invisible"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="15"

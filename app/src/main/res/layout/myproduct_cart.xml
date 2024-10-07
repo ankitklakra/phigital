@@ -7,14 +7,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.rishabhharit.roundedimageview.RoundedImageView
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
             app:cornerRadius="25dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/name"

@@ -45,7 +45,7 @@
             app:layout_constraintStart_toEndOf="@+id/imageView3"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.hendraanggrian.appcompat.widget.SocialEditText
+           <com.hendraanggrian.appcompat.socialview.widget.SocialEditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -56,7 +56,7 @@
                 android:contentDescription="TODO"
                 tools:ignore="ContentDescription,HardcodedText" />
 
-            <com.hendraanggrian.appcompat.widget.SocialEditText
+            <com.hendraanggrian.appcompat.socialview.widget.SocialTextView
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -64,6 +64,8 @@
                 android:background="@null"
                 android:fontFamily="sans-serif-black"
                 android:hint="Search..."
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:paddingStart="15dp"
                 android:textColor="#35383B"
                 android:textColorHint="#657786"

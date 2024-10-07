@@ -17,8 +17,8 @@
         tools:ignore="AlwaysShowAction" />
 
     <item
-        android:id="@+id/video"
-        android:icon="@drawable/ic_video_library"
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
         android:title=""
         app:showAsAction="always"
         tools:ignore="AlwaysShowAction" />

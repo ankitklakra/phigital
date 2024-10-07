@@ -40,7 +40,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
-import com.muddzdev.styleabletoast.StyleableToast;
+
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelStory;
 import com.phigital.ai.Model.ModelUser;
@@ -101,7 +101,7 @@ public class StoryViewActivity extends BaseActivity implements StoriesProgressVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_story_view);
@@ -162,16 +162,7 @@ public class StoryViewActivity extends BaseActivity implements StoriesProgressVi
         binding.imageView2.setOnClickListener(v -> {
             String msg = binding.sendMessage.getText().toString();
             if (msg.isEmpty()){
-                new StyleableToast
-                        .Builder(getApplicationContext())
-                        .text("Type something")
-                        .textColor(Color.WHITE)
-                        .gravity(0)
-                        .textBold()
-                        .length(2000)
-                        .solidBackground()
-                        .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                        .show();
+                Toast.makeText(getApplicationContext(), "Type something", Toast.LENGTH_SHORT).show();
             }else {
                 notify = true;
                 String timeStamp = ""+ System.currentTimeMillis();
@@ -202,16 +193,7 @@ public class StoryViewActivity extends BaseActivity implements StoriesProgressVi
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        new StyleableToast
-                                .Builder(getApplicationContext())
-                                .text(error.getMessage())
-                                .textColor(Color.WHITE)
-                                .textBold()
-                                .length(2000)
-                                .gravity(0)
-                                .solidBackground()
-                                .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                                .show();
+                        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -229,30 +211,11 @@ public class StoryViewActivity extends BaseActivity implements StoriesProgressVi
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        new StyleableToast
-                                .Builder(getApplicationContext())
-                                .text(error.getMessage())
-                                .textColor(Color.WHITE)
-                                .gravity(0)
-                                .textBold()
-                                .length(2000)
-                                .solidBackground()
-                                .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                                .show();
+                        Toast.makeText(getApplicationContext(), "Category can't be changed", Toast.LENGTH_SHORT).show();
                     }
                 });
 
-                new StyleableToast
-                        .Builder(getApplicationContext())
-                        .text("Message sent")
-                        .textColor(Color.WHITE)
-                        .textBold()
-                        .length(2000)
-                        .solidBackground()
-                        .gravity(0)
-                        .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                        .show();
-
+                Toast.makeText(getApplicationContext(), "Message sent", Toast.LENGTH_SHORT).show();
                 DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
                 dataRef.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -484,16 +447,7 @@ public class StoryViewActivity extends BaseActivity implements StoriesProgressVi
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                new StyleableToast
-                        .Builder(getApplicationContext())
-                        .text(error.getMessage())
-                        .textColor(Color.WHITE)
-                        .gravity(0)
-                        .textBold()
-                        .length(2000)
-                        .solidBackground()
-                        .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                        .show();
+                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
             }
         });
     }

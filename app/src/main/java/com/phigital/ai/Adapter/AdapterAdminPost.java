@@ -55,7 +55,6 @@ import com.phigital.ai.Post.PostComments;
 import com.phigital.ai.R;
 import com.phigital.ai.Activity.SearchActivity;
 import com.phigital.ai.Utility.UserProfile;
-import com.rishabhharit.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.tylersuehr.socialtextview.SocialTextView;
 
@@ -1825,7 +1824,7 @@ public class AdapterAdminPost extends RecyclerView.Adapter<AdapterAdminPost.MyHo
     class MyHolder extends RecyclerView.ViewHolder{
 
         final CircleImageView pCircleImageView;
-        final RoundedImageView pMeme;
+        final ImageView pMeme;
         final ImageView more;
         final ImageView rejoy;
         final ImageView comment;

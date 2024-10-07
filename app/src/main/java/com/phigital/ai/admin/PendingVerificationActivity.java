@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.muddzdev.styleabletoast.StyleableToast;
+import com.hendraanggrian.appcompat.socialview.widget.SocialTextView;
 import com.phigital.ai.Adapter.AdapterVerification;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.Model.ModelVerification;
@@ -33,6 +33,8 @@ import com.phigital.ai.R;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import io.github.muddz.styleabletoast.StyleableToast;
 
 public class PendingVerificationActivity extends BaseActivity {
 
@@ -52,7 +54,7 @@ public class PendingVerificationActivity extends BaseActivity {
         setContentView(R.layout.activity_pending_verificattion);
         ImageView imageView3 = findViewById(R.id.imageView3);
         imageView3.setOnClickListener(v -> onBackPressed());
-        EditText editText = findViewById(R.id.editText);
+        SocialTextView editText = findViewById(R.id.editText);
         trendingRv = findViewById(R.id.trendingRv);
         progressBar = findViewById(R.id.pb);
         progressBar.setVisibility(View.VISIBLE);

@@ -12,7 +12,6 @@ import androidx.databinding.DataBindingUtil;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.muddzdev.styleabletoast.StyleableToast;
 import com.phigital.ai.BaseActivity;
 import com.phigital.ai.R;
 import com.phigital.ai.databinding.ActivityVerifyBinding;
@@ -23,6 +22,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Objects;
+
+import io.github.muddz.styleabletoast.StyleableToast;
 
 public class VerifyActivity extends BaseActivity {
 

@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.rishabhharit.roundedimageview.RoundedImageView
+        <ImageView
             android:id="@+id/rec_img"
             android:layout_width="300dp"
             android:layout_height="300dp"
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.rishabhharit.roundedimageview.RoundedImageView
+        <ImageView
             android:id="@+id/rec_vid"
             android:layout_width="300dp"
             android:layout_height="300dp"
@@ -132,7 +132,7 @@
                 app:layout_constraintStart_toEndOf="@+id/civ"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.rishabhharit.roundedimageview.RoundedImageView
+            <ImageView
                 android:id="@+id/imageView13"
                 android:layout_width="0dp"
                 android:layout_height="210dp"

@@ -1,6 +1,7 @@
 package com.phigital.ai.Auth;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,9 +12,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +27,7 @@ import com.phigital.ai.Check;
 import com.phigital.ai.MainActivity;
 import com.phigital.ai.R;
 import com.phigital.ai.databinding.ActivityUsernameBinding;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -223,35 +225,33 @@ public class ProfileFinishActivity extends AppCompatActivity{
 
     //upload image from camera or gallery
     private void selectImage() {
-        CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setActivityMenuIconColor(getResources().getColor(R.color.colorPrimary))
-                .setActivityTitle("Profile Photo")
-                .setFixAspectRatio(true)
-                .setAspectRatio(1, 1)
-                .start(this);
+        ImagePicker.with(this)
+                .crop()                    // Crop image
+                .compress(1024)            // Final image size will be less than 1 MB
+                .maxResultSize(1080, 1080) // Set maximum image resolution
+                .start();
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                assert result != null;
-                image_uri = result.getUri();
-                binding.profileimage.setImageURI(image_uri);
-                try {
-                    compressedImageFile = new Compressor(this).compressToFile(new File(image_uri.getPath()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                binding.profileimage.setVisibility(View.VISIBLE);
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            Uri image_uri = data.getData();
+            binding.profileimage.setImageURI(image_uri);
 
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-                Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            try {
+                // If you need to compress the image further
+                compressedImageFile = new Compressor(this).compressToFile(new File(image_uri.getPath()));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+
+            binding.profileimage.setVisibility(View.VISIBLE);
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

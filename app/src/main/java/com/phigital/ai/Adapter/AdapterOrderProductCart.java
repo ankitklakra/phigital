@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rishabhharit.roundedimageview.RoundedImageView;
+
 import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
@@ -126,7 +127,7 @@ public class AdapterOrderProductCart extends RecyclerView.Adapter<AdapterOrderPr
 
     static class MyHolder extends RecyclerView.ViewHolder{
 
-        final RoundedImageView image;
+        final ImageView image;
         final TextView name;
         final TextView price;
         final TextView brandname;

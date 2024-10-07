@@ -82,7 +82,7 @@ public class ChatFragment extends Fragment {
                     ModelUser user = ds.getValue(ModelUser.class);
                     if (user != null){
                         for (ModelChatList chatlist: chatlistList){
-                            if (user.getId().equals(chatlist.getId())){
+                            if (user != null && user.getId() != null && user.getId().equals(chatlist.getId())){
                                 userList.add(user);
                                 break;
                             }

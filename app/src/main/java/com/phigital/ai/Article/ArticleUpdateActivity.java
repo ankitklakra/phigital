@@ -39,11 +39,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.muddzdev.styleabletoast.StyleableToast;
 import com.phigital.ai.databinding.ActivityArticle2Binding;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+
 import com.yalantis.ucrop.UCrop;
 
 import org.jetbrains.annotations.NotNull;
@@ -104,18 +102,10 @@ public class ArticleUpdateActivity extends BaseActivity {
         binding.category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new StyleableToast
-                        .Builder(getApplicationContext())
-                        .gravity(0)
-                        .text("Category can't be changed")
-                        .textColor(Color.WHITE)
-                        .textBold()
-                        .length(2000)
-                        .solidBackground()
-                        .backgroundColor(getResources().getColor(R.color.colorPrimary))
-                        .show();
+                Toast.makeText(getApplicationContext(), "Category can't be changed", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         Intent intent = getIntent();
         String isUpdateKey = ""+intent.getStringExtra("key");
@@ -125,17 +115,11 @@ public class ArticleUpdateActivity extends BaseActivity {
             loadPostData(editPostId);
         }
         binding.addimage.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                        == PackageManager.PERMISSION_DENIED){
-                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                    requestPermissions(permissions, PERMISSION_CODE);
-                }
-                else {
-                    TedImagePicker.with(ArticleUpdateActivity.this).start(this::showSingleImage);
-                }
-            }
-            else {
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_DENIED) {
+                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                requestPermissions(permissions, PERMISSION_CODE);
+            } else {
                 TedImagePicker.with(ArticleUpdateActivity.this).start(this::showSingleImage);
             }
         });
